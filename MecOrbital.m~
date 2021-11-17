@@ -9,20 +9,27 @@ gSL = 9.81;     % m⋅s-2
 Sun.M = 1.98847e30;
 Sun.mu = GravPar(G,Sun.M);
 % Earth
-Earth.M  = 5.972e24;
-Earth.D  = 1.496e11;
-Earth.R  = 6.378.*10^6;
-Earth.mu = GravPar(G,Earth.M);
-% Measurement units
+Earth.M = 5.972e24;
+Earth.D = 1.496e11;
+Rt = 6.378.*10^6;
 UA = 1.496.*10^11;
 Rot = UA;
+uT = G.*Mt; 
+uS = G.*Ms;
 
-%% Heliocentric Transfer Orbit
-% Aphelion and perihelion
-Ra  = 3*UA;     Rp  = 1*UA;
-% Elliptical Orbit parameters
-[a,e] = SMaxis_eccent(Ra,Rp);
+% Apartado 1)
 
+% Parámetros de la órbita elíptica:
+apo = 3.*UA;
+peri = 0.8.*UA;
+
+% a) Parámetros de la órbita heliocéntrica:
+
+    % semieje mayor
+    a = (Rot+apo)./2
+    
+    % excentricidad
+    e = (a-Rot)./a
 
 
 % b) Representación órbita de transferencia:
@@ -145,22 +152,22 @@ uS = G.*Ms;
 
 % Apartado 2)
 % Constantes previas de la Órbita 1
-    Ra = 3.*UA;
+    apo = 3.*UA;
     H = 11419000;
     vperi = 36472.0472;
     a = 299200000000;
     e = 0.5;
 % Condición Órbita 2:
-    Rp = 0.8.*UA;
+    peri = 0.8.*UA;
 
 % a) Parámetros de la nueva órbita heliocéntrica elíptica:
     % semieje mayor
-    a2 = (Rp+Ra)./2;
+    a2 = (peri+apo)./2;
     % excentricidad
-    e2 = (a2-Rp)./a2;
+    e2 = (a2-peri)./a2;
 
 % b) Incremento de velocidad necesario:
-INC_V= sqrt (uS.*((2./Ra)-1./a2)) - sqrt (uS.*((2./Ra)-1./a));
+INC_V= sqrt (uS.*((2./apo)-1./a2)) - sqrt (uS.*((2./apo)-1./a));
     
 % c) Representación de la secuencia de órbitas seguidas y cruce con la Tierra:
     
