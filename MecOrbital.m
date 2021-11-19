@@ -14,8 +14,7 @@ Earth.D  = 1.496e11;
 Earth.R  = 6.378.*10^6;
 Earth.mu = GravPar(G,Earth.M);
 % Measurement units
-UA = 1.496.*10^11;
-Rot = UA;
+UA = Earth.D;
 
 %% Heliocentric Transfer Orbit
 % Aphelion and perihelion
